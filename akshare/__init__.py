@@ -2711,9 +2711,40 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.12.96 fix: fix stock_bid_ask_em interface
 1.12.97 fix: fix stock_zh_a_hist_min_em interface
 1.12.98 fix: fix bond_zh_cov interface
+1.12.99 fix: fix index_hog_spot_price interface
+1.13.1 fix: fix futures_spot_stock interface
+1.13.2 add: add stock_main_fund_flow interface
+1.13.3 fix: fix stock_main_fund_flow interface
+1.13.4 fix: fix stock_individual_spot_xq interface
+1.13.5 fix: fix stock_main_fund_flow interface
+1.13.6 fix: fix stock_board_concept_name_ths interface
+1.13.7 add: add futures_fees_info interface
+1.13.8 fix: fix fund_etf_hist_em interface
+1.13.9 chore: remove pyarrow deps
+1.13.10 fix: fix news_trade_notify_dividend_baidu interface
+1.13.11 fix: fix option_minute_em interface
+1.13.12 fix: fix stock_zyjs_ths interface
+1.13.13 fix: fix car_market_cpca interface
+1.13.14 fix: fix futures_fees_info interface
+1.13.15 add: add car_market_man_rank_cpca interface
+1.13.16 add: add car_market_cate_cpca interface
+1.13.17 fix: fix stock_zcfz_em interface
+1.13.18 fix: fix macro_china_pmi_yearly interface
+1.13.19 add: add car_market_country_cpca interface
+1.13.20 fix: fix stock_zh_a_disclosure_report_cninfo interface
+1.13.21 fix: fix stock_yjkb_em interface
+1.13.22 fix: fix amac_manager_cancelled_info interface
+1.13.23 add: add macro_usa_cme_merchant_goods_holding interface
+1.13.24 fix: fix futures_spot_sys interface
+1.13.25 fix: fix futures_zh_daily_sina interface
+1.13.26 fix: fix option_sse_minute_sina interface
+1.13.27 add: add stock_esg_msci_sina interface
+1.13.28 fix: fix stock_restricted_release_queue_em interface
+1.13.29 fix: fix stock_esg_msci_sina interface
+1.13.30 fix: fix futures_contract_info_shfe interface
 """
 
-__version__ = "1.12.98"
+__version__ = "1.13.30"
 __author__ = "AKFamily"
 
 import sys
@@ -2734,6 +2765,11 @@ if sys.version_info < (3, 9):
     )
 
 del sys
+
+"""
+申万宏源研究-申万指数-指数发布-基金指数-实时行情
+"""
+from akshare.index.index_research_fund_sw import index_hist_fund_sw, index_realtime_fund_sw
 
 """
 东方财富-财经早餐
@@ -2885,7 +2921,13 @@ from akshare.fund.fund_announcement import fund_announcement_personnel_em
 """
 新浪财经-ESG评级中心
 """
-from akshare.stock_feature.stock_esg_sina import stock_esg_rate_sina, stock_esg_hz_sina
+from akshare.stock_feature.stock_esg_sina import (
+    stock_esg_msci_sina,
+    stock_esg_rft_sina,
+    stock_esg_rate_sina,
+    stock_esg_zd_sina,
+    stock_esg_hz_sina,
+)
 
 """
 LOF 行情数据
@@ -3020,7 +3062,7 @@ from akshare.bond.bond_info_cm import (
 """
 申万宏源研究-指数系列
 """
-from akshare.index.index_sw_research import (
+from akshare.index.index_research_sw import (
     index_realtime_sw,
     index_hist_sw,
     index_component_sw,
@@ -3458,6 +3500,7 @@ from akshare.stock.stock_zh_b_sina import (
 期货手续费
 """
 from akshare.futures.futures_comm_qihuo import futures_comm_info
+from akshare.futures.futures_comm_ctp import futures_fees_info
 
 """
 实际控制人持股变动
@@ -3762,7 +3805,15 @@ from akshare.stock_feature.stock_zf_pg import stock_qbzf_em, stock_pg_em
 """
 汽车销量
 """
-from akshare.other.other_car import car_gasgoo_sale_rank, car_energy_sale_cpca
+from akshare.other.other_car_gasgoo import car_sale_rank_gasgoo
+from akshare.other.other_car_cpca import (
+    car_market_cate_cpca,
+    car_market_fuel_cpca,
+    car_market_segment_cpca,
+    car_market_country_cpca,
+    car_market_man_rank_cpca,
+    car_market_total_cpca,
+)
 
 """
 中国公路物流运价、运量指数
@@ -4289,6 +4340,7 @@ from akshare.stock.stock_fund_em import (
     stock_sector_fund_flow_summary,
     stock_sector_fund_flow_hist,
     stock_concept_fund_flow_hist,
+    stock_main_fund_flow,
 )
 
 """
@@ -4834,10 +4886,7 @@ from akshare.stock.stock_hk_sina import stock_hk_daily, stock_hk_spot
 """
 生意社-商品与期货-现期图数据
 """
-from akshare.futures_derivative.futures_spot_sys import (
-    futures_spot_sys,
-    __get_sys_spot_futures_dict,
-)
+from akshare.futures_derivative.futures_spot_sys import futures_spot_sys
 
 """
 全球宏观-机构宏观
@@ -4899,6 +4948,7 @@ from akshare.economic.macro_usa import (
     macro_usa_cftc_c_holding,
     macro_usa_cftc_merchant_currency_holding,
     macro_usa_cftc_merchant_goods_holding,
+    macro_usa_cme_merchant_goods_holding,
     macro_usa_phs,
 )
 
@@ -5141,6 +5191,7 @@ from akshare.fund.fund_xq import (
     fund_individual_analysis_xq,
     fund_individual_profit_probability_xq,
     fund_individual_detail_info_xq,
+    fund_individual_detail_hold_xq,
 )
 
 """

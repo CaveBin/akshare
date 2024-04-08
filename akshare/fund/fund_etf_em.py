@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2024/3/13 21:30
+Date: 2024/3/26 17:30
 Desc: 东方财富-ETF行情
 https://quote.eastmoney.com/sh513500.html
 """
@@ -35,7 +35,7 @@ def _fund_etf_code_id_map_em() -> dict:
         "fields": "f12,f13",
         "_": "1672806290972",
     }
-    r = requests.get(url, params=params)
+    r = requests.get(url, timeout=15, params=params)
     data_json = r.json()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_dict = dict(zip(temp_df["f12"], temp_df["f13"]))
@@ -71,7 +71,7 @@ def fund_etf_spot_em() -> pd.DataFrame:
         ),
         "_": "1672806290972",
     }
-    r = requests.get(url, params=params)
+    r = requests.get(url, timeout=15, params=params)
     data_json = r.json()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.rename(
@@ -110,7 +110,7 @@ def fund_etf_spot_em() -> pd.DataFrame:
             "f21": "流通市值",
             "f20": "总市值",
             "f402": "基金折价率",
-            "f441": "实时估值",
+            "f441": "IOPV实时估值",
             "f297": "数据日期",
             "f124": "更新时间",
         },
@@ -121,7 +121,7 @@ def fund_etf_spot_em() -> pd.DataFrame:
             "代码",
             "名称",
             "最新价",
-            "实时估值",
+            "IOPV实时估值",
             "基金折价率",
             "涨跌额",
             "涨跌幅",
@@ -158,7 +158,6 @@ def fund_etf_spot_em() -> pd.DataFrame:
         ]
     ]
     temp_df["最新价"] = pd.to_numeric(temp_df["最新价"], errors="coerce")
-    temp_df["实时估值"] = pd.to_numeric(temp_df["实时估值"], errors="coerce")
     temp_df["涨跌额"] = pd.to_numeric(temp_df["涨跌额"], errors="coerce")
     temp_df["涨跌幅"] = pd.to_numeric(temp_df["涨跌幅"], errors="coerce")
     temp_df["成交量"] = pd.to_numeric(temp_df["成交量"], errors="coerce")
@@ -179,6 +178,7 @@ def fund_etf_spot_em() -> pd.DataFrame:
     temp_df["买一"] = pd.to_numeric(temp_df["买一"], errors="coerce")
     temp_df["卖一"] = pd.to_numeric(temp_df["卖一"], errors="coerce")
     temp_df["最新份额"] = pd.to_numeric(temp_df["最新份额"], errors="coerce")
+    temp_df["IOPV实时估值"] = pd.to_numeric(temp_df["IOPV实时估值"], errors="coerce")
     temp_df["基金折价率"] = pd.to_numeric(temp_df["基金折价率"], errors="coerce")
     temp_df["主力净流入-净额"] = pd.to_numeric(
         temp_df["主力净流入-净额"], errors="coerce"
@@ -262,17 +262,17 @@ def fund_etf_hist_em(
     try:
         market_id = code_id_dict[symbol]
         params.update({"secid": f"{market_id}.{symbol}"})
-        r = requests.get(url, params=params)
+        r = requests.get(url, timeout=15, params=params)
         data_json = r.json()
     except KeyError:
         market_id = 1
         params.update({"secid": f"{market_id}.{symbol}"})
-        r = requests.get(url, params=params)
+        r = requests.get(url, timeout=15, params=params)
         data_json = r.json()
         if not data_json["data"]:
             market_id = 0
             params.update({"secid": f"{market_id}.{symbol}"})
-            r = requests.get(url, params=params)
+            r = requests.get(url, timeout=15, params=params)
             data_json = r.json()
     if not (data_json["data"] and data_json["data"]["klines"]):
         return pd.DataFrame()
@@ -355,7 +355,7 @@ def fund_etf_hist_min_em(
             "secid": f"{code_id_dict[symbol]}.{symbol}",
             "_": "1623766962675",
         }
-        r = requests.get(url, params=params)
+        r = requests.get(url, timeout=15, params=params)
         data_json = r.json()
         temp_df = pd.DataFrame(
             [item.split(",") for item in data_json["data"]["trends"]]
@@ -395,7 +395,7 @@ def fund_etf_hist_min_em(
             "end": "20500000",
             "_": "1630930917857",
         }
-        r = requests.get(url, params=params)
+        r = requests.get(url, timeout=15, params=params)
         data_json = r.json()
         temp_df = pd.DataFrame(
             [item.split(",") for item in data_json["data"]["klines"]]
