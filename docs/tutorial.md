@@ -411,12 +411,6 @@
  "stock_comment_detail_scrd_cost_em"  # 市场热度-市场成本
  # 沪深港通
  "stock_hk_ggt_components_em"  # 港股通成份股
- "stock_hsgt_north_net_flow_in_em"  # 沪深港通北向-净流入
- "stock_hsgt_north_cash_em"  # 沪深港通北向-资金余额
- "stock_hsgt_north_acc_flow_in_em"  # 沪深港通北向-累计净流入
- "stock_hsgt_south_net_flow_in_em"  # 沪深港通南向-净流入
- "stock_hsgt_south_cash_em"  # 沪深港通南向-资金余额
- "stock_hsgt_south_acc_flow_in_em"  # 沪深港通南向-累计净流入
  "stock_hsgt_hold_stock_em"  # 沪深港通持股-个股排行
  "stock_hsgt_stock_statistics_em"  # 沪深港通持股-每日个股统计
  "stock_hsgt_institution_statistics_em"  # 沪深港通持股-每日机构统计
@@ -1264,6 +1258,9 @@
  "stock_info_global_futu"  # 资讯数据-富途牛牛
  "stock_info_global_ths"  # 资讯数据-同花顺
  "stock_info_global_cls"  # 资讯数据-财联社
+ "stock_info_broker_sina"  # 新浪财经-证券-证券原创
+ # 数库-A股新闻情绪指数
+ "index_news_sentiment_scope"  # 数库-A股新闻情绪指数
 ```
 
 ## 案例演示

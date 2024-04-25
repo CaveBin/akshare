@@ -78,6 +78,50 @@
 
 ## 更新说明详情
 
+1.13.39 add: add index_news_sentiment_scope interface
+
+    1. 新增 index_news_sentiment_scope 接口
+    2. 修复 index_yw 接口
+
+1.13.38 fix: fix stock_market_activity_legu interface
+
+    1. 修复 stock_market_activity_legu 接口
+    2. 修复 get_shfe_daily 接口
+    3. 修复 get_czce_daily 接口
+
+1.13.37 fix: fix stock_hk_index_daily_sina interface
+
+    1. 修复 stock_hk_index_daily_sina 接口
+    2. 新增 stock_info_broker_sina 接口
+
+1.13.36 fix: fix stock_hsgt_hist_em interface
+
+    1. 修复 stock_hsgt_hist_em 接口
+
+1.13.35 fix: fix stock_margin_szse interface
+
+    1. 修复 stock_margin_szse 接口
+
+1.13.34 fix: fix bank_fjcf_table_detail interface
+
+    1. 修复 bank_fjcf_table_detail 接口
+
+1.13.33 fix: fix index_realtime_fund_sw interface
+
+    1. 修复 index_realtime_fund_sw 接口
+    2. 修复 stock_zt_pool_em 接口
+
+1.13.32 fix: fix futures_contract_info_czce interface
+
+    1. 修复 futures_contract_info_czce 接口
+    2. 修复 stock_board_concept_cons_em 接口
+    3. 修复 futures_comm_info 接口
+    4. 修复 stock_us_pink_spot_em 接口
+
+1.13.31 fix: fix stock_individual_spot_xq interface
+
+    1. 修复 stock_individual_spot_xq 接口
+
 1.13.30 fix: fix futures_contract_info_shfe interface
 
     1. 修复 futures_contract_info_shfe 接口
@@ -3895,6 +3939,24 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.13.39 add: add index_news_sentiment_scope interface
+
+1.13.38 fix: fix stock_market_activity_legu interface
+
+1.13.37 fix: fix stock_hk_index_daily_sina interface
+
+1.13.36 fix: fix stock_hsgt_hist_em interface
+
+1.13.35 fix: fix stock_margin_szse interface
+
+1.13.34 fix: fix bank_fjcf_table_detail interface
+
+1.13.33 fix: fix index_realtime_fund_sw interface
+
+1.13.32 fix: fix futures_contract_info_czce interface
+
+1.13.31 fix: fix stock_individual_spot_xq interface
 
 1.13.30 fix: fix futures_contract_info_shfe interface
 

@@ -2742,9 +2742,18 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.13.28 fix: fix stock_restricted_release_queue_em interface
 1.13.29 fix: fix stock_esg_msci_sina interface
 1.13.30 fix: fix futures_contract_info_shfe interface
+1.13.31 fix: fix stock_individual_spot_xq interface
+1.13.32 fix: fix futures_contract_info_czce interface
+1.13.33 fix: fix index_realtime_fund_sw interface
+1.13.34 fix: fix bank_fjcf_table_detail interface
+1.13.35 fix: fix stock_margin_szse interface
+1.13.36 fix: fix stock_hsgt_hist_em interface
+1.13.37 fix: fix stock_hk_index_daily_sina interface
+1.13.38 fix: fix stock_market_activity_legu interface
+1.13.39 add: add index_news_sentiment_scope interface
 """
 
-__version__ = "1.13.30"
+__version__ = "1.13.39"
 __author__ = "AKFamily"
 
 import sys
@@ -2756,7 +2765,7 @@ pd_main_version = int(pd.__version__.split('.')[0])
 
 if pd_main_version < 2:
     warnings.warn(
-        "为了支持更多特性，请将 Pandas 升级到 2.1.0 及以上版本！"
+        "为了支持更多特性，请将 Pandas 升级到 2.2.0 及以上版本！"
     )
 
 if sys.version_info < (3, 9):
@@ -2765,6 +2774,11 @@ if sys.version_info < (3, 9):
     )
 
 del sys
+
+"""
+数库-A股新闻情绪指数
+"""
+from akshare.index.index_zh_a_scope import index_news_sentiment_scope
 
 """
 申万宏源研究-申万指数-指数发布-基金指数-实时行情
@@ -2780,7 +2794,8 @@ from akshare.stock_feature.stock_info import (
     stock_info_global_ths,
     stock_info_global_futu,
     stock_info_global_sina,
-    stock_info_global_cls
+    stock_info_global_cls,
+    stock_info_broker_sina,
 )
 
 """
@@ -4416,12 +4431,6 @@ stock-em-hsgt
 """
 from akshare.stock_feature.stock_hsgt_em import (
     stock_hk_ggt_components_em,
-    stock_hsgt_north_acc_flow_in_em,
-    stock_hsgt_north_cash_em,
-    stock_hsgt_north_net_flow_in_em,
-    stock_hsgt_south_acc_flow_in_em,
-    stock_hsgt_south_cash_em,
-    stock_hsgt_south_net_flow_in_em,
     stock_hsgt_hold_stock_em,
     stock_hsgt_hist_em,
     stock_hsgt_institution_statistics_em,
@@ -5174,7 +5183,6 @@ from akshare.futures.futures_roll_yield import (
 from akshare.futures.futures_daily_bar import (
     get_cffex_daily,
     get_czce_daily,
-    get_shfe_v_wap,
     get_shfe_daily,
     get_dce_daily,
     get_futures_daily,
